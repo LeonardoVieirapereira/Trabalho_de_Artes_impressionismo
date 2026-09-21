@@ -3,18 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trabalho de Artes: Impressionismo</title>
+    <title>O Impressionismo - Uma Jornada nas Cores da Luz</title>
+    <!-- Fontes clássicas / estilo antigo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
     <style>
+        /* Palette de Cores de Pinturas Antigas / Envelhecidas */
+        :root {
+            --bg-canvas: #e2d7c5;
+            --bg-paper: #f2e8d8;
+            --brown-dark: #3a2b1d;
+            --brown-muted: #7a6349;
+            --sepia-border: #b8a388;
+            --gold-accent: #9a783e;
+            --font-title: 'Cinzel Decorative', serif;
+            --font-body: 'Playfair Display', serif;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #1a1a2e;
-            color: #fff;
+            background-color: var(--bg-canvas);
+            background-image: radial-gradient(#ccbc9e 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: var(--brown-dark);
+            font-family: var(--font-body);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,242 +41,270 @@
             overflow: hidden;
         }
 
-        /* Container Principal da Apresentação */
-        .presentation-container {
-            width: 90vw;
-            max-width: 1000px;
-            height: 80vh;
-            background: #16213e;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        /* Moldura de Livro Antigo / Quadro */
+        .book-container {
+            width: 92%;
+            max-width: 900px;
+            height: 85vh;
+            max-height: 680px;
+            background: var(--bg-paper);
+            border: 12px solid var(--brown-dark);
+            outline: 2px solid var(--gold-accent);
+            box-shadow: inset 0 0 40px rgba(58, 43, 29, 0.25), 0 20px 45px rgba(0,0,0,0.5);
+            border-radius: 6px;
             position: relative;
-            overflow: hidden;
+            padding: 40px;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
         }
 
-        /* Área dos Slides */
-        .slides-wrapper {
-            flex: 1;
-            position: relative;
-        }
-
-        .slide {
+        /* Indicador do número da página */
+        .page-indicator {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 18px;
+            right: 28px;
+            font-size: 0.95rem;
+            color: var(--brown-muted);
+            letter-spacing: 2px;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        /* Estrutura das Páginas */
+        .page {
+            display: none;
             opacity: 0;
-            visibility: hidden;
-            transition: all 0.6s ease-in-out;
-            padding: 50px;
-            display: flex;
+            transition: opacity 0.7s ease-in-out;
+            height: 100%;
             flex-direction: column;
             justify-content: center;
-            box-sizing: border-box;
         }
 
-        .slide.active {
+        .page.active {
+            display: flex;
             opacity: 1;
-            visibility: visible;
         }
 
-        /* Estilização dos Conteúdos */
-        h1 {
-            font-size: 2.8rem;
-            color: #e94560;
-            margin-bottom: 20px;
+        h1, h2 {
+            font-family: var(--font-title);
+            color: var(--brown-dark);
             text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(184, 163, 136, 0.4);
+            line-height: 1.3;
         }
 
-        h2 {
-            font-size: 2rem;
-            color: #00fff5;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #00fff5;
-            padding-bottom: 10px;
-            display: inline-block;
+        h1 { 
+            font-size: 2.2rem; 
+            letter-spacing: 1px;
+        }
+        
+        h2 { 
+            font-size: 1.7rem; 
+            border-bottom: 1px solid var(--sepia-border); 
+            padding-bottom: 10px; 
+            margin-bottom: 25px;
         }
 
         p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #dcdde1;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+            color: var(--brown-dark);
+            margin-bottom: 15px;
+            text-indent: 20px;
+        }
+
+        .intro-text {
+            text-indent: 0;
+            font-style: italic;
+            text-align: center;
+            color: var(--brown-muted);
+            margin-bottom: 25px;
+            font-size: 1.15rem;
+        }
+
+        /* Efeito de Pincelada / Revelação da Pintura */
+        .artwork-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 520px;
+            height: 270px;
+            margin: 15px auto;
+            border: 8px solid var(--brown-muted);
+            outline: 1px solid var(--gold-accent);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            overflow: hidden;
+            background-color: var(--brown-dark);
+        }
+
+        .artwork-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(0.3) contrast(1.08) brightness(0.95);
+            /* Animação que simula o pincel pintando a tela ao revelar a imagem */
+            clip-path: circle(0% at 50% 50%);
+            transition: clip-path 2.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Ao ativar a página, o efeito do pincel abre a tela */
+        .page.active .artwork-img {
+            clip-path: circle(120% at 50% 50%);
+        }
+
+        /* Legenda das Obras */
+        .caption {
+            text-align: center;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--brown-muted);
+            margin-top: -5px;
             margin-bottom: 15px;
         }
 
-        ul {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-left: 30px;
-            color: #dcdde1;
-        }
-
-        li {
-            margin-bottom: 10px;
-        }
-
-        .highlight {
-            color: #f8a5c2;
-            font-weight: bold;
-        }
-
-        /* Capa Especial */
-        .slide-cover {
-            text-align: center;
-            align-items: center;
-        }
-
-        .slide-cover h3 {
-            font-size: 1.5rem;
-            color: #8a8a8a;
+        /* Lista estilizada da Página 2 */
+        .features-list {
+            list-style: none;
             margin-top: 10px;
-            font-weight: normal;
         }
 
-        /* Navegação e Botões */
-        .controls {
-            height: 70px;
-            background: #0f3460;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 30px;
+        .features-list li {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
         }
 
-        .btn {
-            background-color: #e94560;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
+        .features-list li::before {
+            content: "❧";
+            position: absolute;
+            left: 0;
+            color: var(--gold-accent);
+            font-size: 1.2rem;
         }
 
-        .btn:hover {
-            background-color: #ff6b81;
+        /* Rodapé com Instrução do Teclado */
+        .footer-nav {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--brown-muted);
+            border-top: 1px solid var(--sepia-border);
+            padding-top: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        .btn:disabled {
-            background-color: #555;
-            cursor: not-allowed;
-        }
-
-        .slide-counter {
-            font-size: 1rem;
-            color: #8a8a8a;
+        .key-hint {
+            background-color: var(--sepia-border);
+            color: var(--brown-dark);
+            padding: 3px 9px;
+            border-radius: 4px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
         }
     </style>
 </head>
 <body>
 
-    <div class="presentation-container">
-        <div class="slides-wrapper">
+    <div class="book-container">
+        <div class="page-indicator" id="pageIndicator">Página I de IV</div>
 
-            <!-- Slide 1: Capa -->
-            <div class="slide slide-cover active">
-                <h1>O IMPRESSIONISMO</h1>
-                <p style="font-size: 1.5rem; margin-top: 10px;">A Revolução da Luz e da Cor na Arte</p>
-                <h3>Trabalho de Artes Visuais</h3>
+        <!-- PÁGINA 1: INTRODUÇÃO -->
+        <div class="page active" id="page-1">
+            <h1>O Impressionismo</h1>
+            <p class="intro-text">"A luz é a principal personagem da tela."</p>
+            <p>
+                O Impressionismo foi um movimento artístico revolucionário emergido na França na segunda metade do século XIX. Rompendo com o academicismo e com as regras rígidas do Salon de Paris, os impressionistas buscaram registrar a luz natural, a atmosfera e as impressões efêmeras da vida moderna.
+            </p>
+            <div class="artwork-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Claude_Monet%2C_Impression%2C_soleil_levant.jpg/800px-Claude_Monet%2C_Impression%2C_soleil_levant.jpg" alt="Impression, soleil levant" class="artwork-img">
             </div>
-
-            <!-- Slide 2: O que foi? -->
-            <div class="slide">
-                <h2>O que foi o Impressionismo?</h2>
-                <p>O <strong>Impressionismo</strong> foi um movimento artístico que emergiu na França na segunda metade do século XIX (década de 1870).</p>
-                <p>Os artistas romperam com as regras rígidas da <span class="highlight">Arte Acadêmica</span>, optando por pintar ao ar livre para capturar a luz solar e as transformações da natureza em tempo real.</p>
-            </div>
-
-            <!-- Slide 3: Principais Características -->
-            <div class="slide">
-                <h2>Principais Características</h2>
-                <ul>
-                    <li><strong>Luz Natural:</strong> Foco em como a luz do sol altera as cores dos objetos.</li>
-                    <li><strong>Pinceladas Soltas:</strong> Pinceladas rápidas e visíveis, sem preocupação com contornos definidos.</li>
-                    <li><strong>Mistura Óptica:</strong> Cores puras aplicadas lado a lado na tela para serem misturadas pelos olhos de quem vê.</li>
-                    <li><strong>Temas do Cotidiano:</strong> Paisagens naturais, cenas urbanas e vida boêmia de Paris.</li>
-                </ul>
-            </div>
-
-            <!-- Slide 4: Origem do Nome -->
-            <div class="slide">
-                <h2>Origem do Nome</h2>
-                <p>O termo "Impressionismo" surgiu de forma pejorativa através do crítico de arte Louis Leroy, ao comentar a obra <em>"Impressão, Nascer do Sol"</em> (1872) de <span class="highlight">Claude Monet</span>.</p>
-                <p>O crítico ironizou a pintura dizendo que ela parecia apenas um "esboço incompleto" ou uma simples "impressão". Os artistas gostaram do termo e o adotaram para o movimento.</p>
-            </div>
-
-            <!-- Slide 5: Principais Artistas -->
-            <div class="slide">
-                <h2>Principais Artistas</h2>
-                <ul>
-                    <li><strong>Claude Monet:</strong> O pai do impressionismo, famoso por suas séries de paisagens e vitórias-régias.</li>
-                    <li><strong>Pierre-Auguste Renoir:</strong> Destacou-se pelas cores vivas e celebração da vida social urbana.</li>
-                    <li><strong>Edgar Degas:</strong> Conhecido por capturar o movimento, especialmente em suas pinturas de bailarinas.</li>
-                    <li><strong>Berthe Morisot:</strong> Uma das mulheres mais importantes do movimento, retratando o universo feminino e familiar.</li>
-                </ul>
-            </div>
-
-            <!-- Slide 6: Conclusão -->
-            <div class="slide">
-                <h2>Conclusão e Impacto</h2>
-                <p>O Impressionismo não apenas mudou a forma de pintar, mas **libertou a arte** da obrigação de copiar fielmente a realidade.</p>
-                <p>Ele abriu caminho para a **Arte Moderna** e influenciou diretamente movimentos futuros como o Pós-Impressionismo, o Fovismo e o Cubismo.</p>
-            </div>
-
+            <div class="caption">"Impression, soleil levant" (1872) — Claude Monet. A obra que deu nome ao movimento.</div>
         </div>
 
-        <!-- Controles dos Slides -->
-        <div class="controls">
-            <button class="btn" id="prevBtn" onclick="changeSlide(-1)" disabled>Anterior</button>
-            <div class="slide-counter" id="slideCounter">Slide 1 de 6</div>
-            <button class="btn" id="nextBtn" onclick="changeSlide(1)">Próximo</button>
+        <!-- PÁGINA 2: CARACTERÍSTICAS -->
+        <div class="page" id="page-2">
+            <h2>Técnicas e Características</h2>
+            <p>
+                Os pintores impressionistas transformaram a forma de enxergar e representar o mundo ao seu redor através de novas abordagens estéticas:
+            </p>
+            <ul class="features-list">
+                <li><strong>Pintura ao Ar Livre (En plein air):</strong> Abandono do ateliê para capturar as transformações da luz solar em tempo real.</li>
+                <li><strong>Pinceladas Rápidas e Visíveis:</strong> Toques de tinta que deixam a textura do pincel evidente na tela.</li>
+                <li><strong>Mistura Óptica de Cores:</strong> Cores puras aplicadas lado a lado para serem fundidas pelo olhar do espectador.</li>
+                <li><strong>Sombras Coloridas:</strong> As sombras deixaram de ser pretas ou cinzas e passaram a refletir tons violetas e azulados.</li>
+            </ul>
+        </div>
+
+        <!-- PÁGINA 3: GRANDES MESTRES -->
+        <div class="page" id="page-3">
+            <h2>Os Grandes Mestres</h2>
+            <p>
+                A essência do movimento foi moldada por artistas visionários que imortalizaram a sensibilidade da luz e do cotidiano parisiense.
+            </p>
+            <div class="artwork-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Pierre-Auguste_Renoir_-_Le_Moulin_de_la_Galette_-_Google_Art_Project.jpg/800px-Pierre-Auguste_Renoir_-_Le_Moulin_de_la_Galette_-_Google_Art_Project.jpg" alt="Bal du moulin de la Galette" class="artwork-img">
+            </div>
+            <div class="caption">"Bal du moulin de la Galette" (1876) — Pierre-Auguste Renoir. Cenas da vida cotidiana sob a luz filtrada.</div>
+        </div>
+
+        <!-- PÁGINA 4: O LEGADO -->
+        <div class="page" id="page-4">
+            <h2>O Legado na História da Arte</h2>
+            <p>
+                Apesar de inicialmente rejeitados pelos críticos tradicionais, os impressionistas libertaram a pintura das amarras da representação fotográfica. Ao dar primazia à percepção individual e à subjetividade, o Impressionismo abriu o caminho para todas as vanguardas do século XX.
+            </p>
+            <p>
+                Nomes como Claude Monet, Pierre-Auguste Renoir, Edgar Degas, Camille Pissarro e Berthe Morisot redefiniram para sempre a relação entre a arte, o tempo e a luz.
+            </p>
+        </div>
+
+        <!-- RODAPÉ NAVEGAÇÃO POR TECLADO -->
+        <div class="footer-nav">
+            Pressione as setas <span class="key-hint">←</span> e <span class="key-hint">→</span> do teclado para mudar as páginas
         </div>
     </div>
 
-    <!-- Script para controle de navegação -->
+    <!-- JAVASCRIPT: NAVEGAÇÃO POR SETAS E CONTROLE DE PÁGINAS -->
     <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const slideCounter = document.getElementById('slideCounter');
+        let currentPage = 1;
+        const totalPages = 4;
+        const romanNumerals = ["I", "II", "III", "IV"];
 
-        function updateSlide() {
-            slides.forEach((slide, index) => {
-                if (index === currentSlide) {
-                    slide.classList.add('active');
-                } else {
-                    slide.classList.remove('active');
+        function showPage(pageIndex) {
+            if (pageIndex < 1 || pageIndex > totalPages) return;
+
+            // Oculta todas as páginas
+            for (let i = 1; i <= totalPages; i++) {
+                const page = document.getElementById(`page-${i}`);
+                page.classList.remove('active');
+            }
+
+            // Ativa a página atual
+            const activePage = document.getElementById(`page-${pageIndex}`);
+            activePage.classList.add('active');
+
+            // Atualiza o indicador numérico em algarismos romanos
+            document.getElementById('pageIndicator').innerText = `Página ${romanNumerals[pageIndex - 1]} de ${romanNumerals[totalPages - 1]}`;
+
+            currentPage = pageIndex;
+        }
+
+        // Captura o evento das setas do teclado do PC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight') {
+                if (currentPage < totalPages) {
+                    showPage(currentPage + 1);
                 }
-            });
-
-            // Atualiza contador
-            slideCounter.textContent = `Slide ${currentSlide + 1} de ${slides.length}`;
-
-            // Ativa/Desativa botões
-            prevBtn.disabled = currentSlide === 0;
-            nextBtn.disabled = currentSlide === slides.length - 1;
-        }
-
-        function changeSlide(direction) {
-            currentSlide += direction;
-            if (currentSlide < 0) currentSlide = 0;
-            if (currentSlide >= slides.length) currentSlide = slides.length - 1;
-            updateSlide();
-        }
-
-        // Navegação por teclado (setas)
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === ' ') {
-                if (currentSlide < slides.length - 1) changeSlide(1);
-            } else if (e.key === 'ArrowLeft') {
-                if (currentSlide > 0) changeSlide(-1);
+            } else if (event.key === 'ArrowLeft') {
+                if (currentPage > 1) {
+                    showPage(currentPage - 1);
+                }
             }
         });
     </script>
 </body>
-  </html>
-  
+</html>
