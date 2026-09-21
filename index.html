@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O Impressionismo - Uma Jornada nas Cores da Luz</title>
-    <!-- Fontes clássicas / estilo antigo -->
+    <!-- Fontes clássicas / antigas -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -45,8 +45,8 @@
         .book-container {
             width: 92%;
             max-width: 900px;
-            height: 85vh;
-            max-height: 680px;
+            height: 88vh;
+            max-height: 700px;
             background: var(--bg-paper);
             border: 12px solid var(--brown-dark);
             outline: 2px solid var(--gold-accent);
@@ -71,7 +71,7 @@
             font-weight: 600;
         }
 
-        /* Estrutura das Páginas */
+        /* Páginas */
         .page {
             display: none;
             opacity: 0;
@@ -90,29 +90,29 @@
             font-family: var(--font-title);
             color: var(--brown-dark);
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-shadow: 1px 1px 2px rgba(184, 163, 136, 0.4);
             line-height: 1.3;
         }
 
         h1 { 
-            font-size: 2.2rem; 
+            font-size: 2.1rem; 
             letter-spacing: 1px;
         }
         
         h2 { 
-            font-size: 1.7rem; 
+            font-size: 1.6rem; 
             border-bottom: 1px solid var(--sepia-border); 
-            padding-bottom: 10px; 
-            margin-bottom: 25px;
+            padding-bottom: 8px; 
+            margin-bottom: 20px;
         }
 
         p {
-            font-size: 1.1rem;
-            line-height: 1.8;
+            font-size: 1.05rem;
+            line-height: 1.7;
             text-align: justify;
             color: var(--brown-dark);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             text-indent: 20px;
         }
 
@@ -121,59 +121,60 @@
             font-style: italic;
             text-align: center;
             color: var(--brown-muted);
-            margin-bottom: 25px;
-            font-size: 1.15rem;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
         }
 
-        /* Efeito de Pincelada / Revelação da Pintura */
+        /* Moldura SVG da Imagem Pintada */
         .artwork-wrapper {
             position: relative;
             width: 100%;
-            max-width: 520px;
-            height: 270px;
-            margin: 15px auto;
+            max-width: 480px;
+            height: 250px;
+            margin: 10px auto 15px auto;
             border: 8px solid var(--brown-muted);
             outline: 1px solid var(--gold-accent);
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
             overflow: hidden;
             background-color: var(--brown-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .artwork-img {
+        .artwork-svg {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            filter: sepia(0.3) contrast(1.08) brightness(0.95);
             /* Animação que simula o pincel pintando a tela ao revelar a imagem */
             clip-path: circle(0% at 50% 50%);
             transition: clip-path 2.2s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         /* Ao ativar a página, o efeito do pincel abre a tela */
-        .page.active .artwork-img {
+        .page.active .artwork-svg {
             clip-path: circle(120% at 50% 50%);
         }
 
-        /* Legenda das Obras */
+        /* Legenda da pintura antiga */
         .caption {
             text-align: center;
             font-style: italic;
             font-size: 0.9rem;
             color: var(--brown-muted);
             margin-top: -5px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
-        /* Lista estilizada da Página 2 */
+        /* Lista estilizada na página 2 */
         .features-list {
             list-style: none;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .features-list li {
             font-size: 1.05rem;
-            line-height: 1.8;
-            margin-bottom: 12px;
+            line-height: 1.7;
+            margin-bottom: 10px;
             padding-left: 25px;
             position: relative;
         }
@@ -186,24 +187,56 @@
             font-size: 1.2rem;
         }
 
-        /* Rodapé com Instrução do Teclado */
-        .footer-nav {
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--brown-muted);
+        /* Controles de Navegação por Botão e Teclado */
+        .controls-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-top: 1px solid var(--sepia-border);
             padding-top: 15px;
+            margin-top: 10px;
+        }
+
+        .nav-btn {
+            background-color: var(--bg-canvas);
+            color: var(--brown-dark);
+            border: 2px solid var(--brown-muted);
+            padding: 8px 18px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background-color: var(--gold-accent);
+            color: #fff;
+            border-color: var(--brown-dark);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            border-color: var(--sepia-border);
+        }
+
+        .footer-hint {
+            font-size: 0.8rem;
+            color: var(--brown-muted);
             letter-spacing: 1px;
             text-transform: uppercase;
+            text-align: center;
         }
 
         .key-hint {
             background-color: var(--sepia-border);
             color: var(--brown-dark);
-            padding: 3px 9px;
-            border-radius: 4px;
+            padding: 2px 6px;
+            border-radius: 3px;
             font-weight: bold;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
         }
     </style>
 </head>
@@ -220,9 +253,46 @@
                 O Impressionismo foi um movimento artístico revolucionário emergido na França na segunda metade do século XIX. Rompendo com o academicismo e com as regras rígidas do Salon de Paris, os impressionistas buscaram registrar a luz natural, a atmosfera e as impressões efêmeras da vida moderna.
             </p>
             <div class="artwork-wrapper">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Claude_Monet%2C_Impression%2C_soleil_levant.jpg/800px-Claude_Monet%2C_Impression%2C_soleil_levant.jpg" alt="Impression, soleil levant" class="artwork-img">
+                <!-- Pintura em SVG Vetorial (Impression, Soleil Levant) -->
+                <svg class="artwork-svg" viewBox="0 0 500 260" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#3d332a" />
+                            <stop offset="30%" stop-color="#8a5e3c" />
+                            <stop offset="60%" stop-color="#c98353" />
+                            <stop offset="100%" stop-color="#d6b088" />
+                        </linearGradient>
+                        <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#ff7b3d" />
+                            <stop offset="50%" stop-color="#e06331" stop-opacity="0.8" />
+                            <stop offset="100%" stop-color="#c98353" stop-opacity="0" />
+                        </radialGradient>
+                    </defs>
+                    <rect width="500" height="260" fill="url(#skyGrad)" />
+                    <rect y="140" width="500" height="120" fill="#2d3330" />
+                    <rect y="140" width="500" height="120" fill="#a8744d" opacity="0.3" />
+                    <circle cx="320" cy="110" r="45" fill="url(#sunGlow)" />
+                    <circle cx="320" cy="110" r="14" fill="#ff521b" />
+                    <ellipse cx="320" cy="148" rx="20" ry="2" fill="#ff521b" opacity="0.9" />
+                    <ellipse cx="318" cy="156" rx="35" ry="3" fill="#ff521b" opacity="0.8" />
+                    <ellipse cx="322" cy="166" rx="28" ry="2.5" fill="#e06331" opacity="0.8" />
+                    <ellipse cx="315" cy="176" rx="42" ry="3" fill="#e06331" opacity="0.7" />
+                    <ellipse cx="325" cy="188" rx="25" ry="2" fill="#c98353" opacity="0.8" />
+                    <ellipse cx="310" cy="200" rx="50" ry="3.5" fill="#ff521b" opacity="0.6" />
+                    <ellipse cx="318" cy="215" rx="30" ry="2" fill="#c98353" opacity="0.5" />
+                    <line x1="120" y1="80" x2="120" y2="145" stroke="#1c211f" stroke-width="2" opacity="0.5" />
+                    <line x1="140" y1="60" x2="140" y2="145" stroke="#1c211f" stroke-width="3" opacity="0.6" />
+                    <line x1="160" y1="90" x2="160" y2="145" stroke="#1c211f" stroke-width="1.5" opacity="0.4" />
+                    <line x1="380" y1="70" x2="380" y2="145" stroke="#1c211f" stroke-width="2" opacity="0.5" />
+                    <path d="M 210,170 Q 235,178 260,170 Q 240,165 210,170 Z" fill="#141a18" />
+                    <circle cx="230" cy="162" r="4" fill="#141a18" />
+                    <line x1="235" y1="162" x2="225" y2="182" stroke="#141a18" stroke-width="2" />
+                    <path d="M 150,195 Q 185,205 220,195 Q 190,188 150,195 Z" fill="#0d1210" />
+                    <circle cx="180" cy="184" r="5" fill="#0d1210" />
+                    <line x1="188" y1="184" x2="170" y2="212" stroke="#0d1210" stroke-width="2.5" />
+                </svg>
             </div>
-            <div class="caption">"Impression, soleil levant" (1872) — Claude Monet. A obra que deu nome ao movimento.</div>
+            <div class="caption">"Impression, soleil levant" (1872) — Claude Monet. Recriação temática da obra.</div>
         </div>
 
         <!-- PÁGINA 2: CARACTERÍSTICAS -->
@@ -246,9 +316,36 @@
                 A essência do movimento foi moldada por artistas visionários que imortalizaram a sensibilidade da luz e do cotidiano parisiense.
             </p>
             <div class="artwork-wrapper">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Pierre-Auguste_Renoir_-_Le_Moulin_de_la_Galette_-_Google_Art_Project.jpg/800px-Pierre-Auguste_Renoir_-_Le_Moulin_de_la_Galette_-_Google_Art_Project.jpg" alt="Bal du moulin de la Galette" class="artwork-img">
+                <!-- Pintura em SVG Vetorial (Bal du moulin de la Galette - Renoir) -->
+                <svg class="artwork-svg" viewBox="0 0 500 260" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="danceLight" cx="50%" cy="30%" r="70%">
+                            <stop offset="0%" stop-color="#f5e1a4" />
+                            <stop offset="50%" stop-color="#b88d58" />
+                            <stop offset="100%" stop-color="#3b2d1d" />
+                        </radialGradient>
+                    </defs>
+                    <rect width="500" height="260" fill="url(#danceLight)" />
+                    <circle cx="80" cy="60" r="70" fill="#2d3b22" opacity="0.7" />
+                    <circle cx="220" cy="40" r="90" fill="#3a4a2b" opacity="0.6" />
+                    <circle cx="400" cy="70" r="80" fill="#25331b" opacity="0.8" />
+                    <circle cx="100" cy="120" r="15" fill="#fff5cc" opacity="0.4" />
+                    <circle cx="180" cy="90" r="22" fill="#fff5cc" opacity="0.5" />
+                    <circle cx="270" cy="140" r="18" fill="#fff5cc" opacity="0.3" />
+                    <circle cx="340" cy="100" r="25" fill="#fff5cc" opacity="0.45" />
+                    <circle cx="420" cy="160" r="20" fill="#fff5cc" opacity="0.35" />
+                    <ellipse cx="150" cy="200" rx="25" ry="45" fill="#1f1811" />
+                    <circle cx="150" cy="145" r="12" fill="#d9b18f" />
+                    <ellipse cx="190" cy="205" rx="22" ry="40" fill="#5c4433" />
+                    <circle cx="190" cy="155" r="11" fill="#e0c2a6" />
+                    <ellipse cx="300" cy="190" rx="30" ry="50" fill="#182333" />
+                    <circle cx="300" cy="130" r="14" fill="#cca485" />
+                    <ellipse cx="300" cy="118" rx="20" ry="5" fill="#d9b652" />
+                    <ellipse cx="350" cy="200" rx="28" ry="45" fill="#6e2d33" />
+                    <circle cx="350" cy="142" r="12" fill="#e8cbb0" />
+                </svg>
             </div>
-            <div class="caption">"Bal du moulin de la Galette" (1876) — Pierre-Auguste Renoir. Cenas da vida cotidiana sob a luz filtrada.</div>
+            <div class="caption">"Bal du moulin de la Galette" (1876) — Pierre-Auguste Renoir. Atmosfera de dança e luz.</div>
         </div>
 
         <!-- PÁGINA 4: O LEGADO -->
@@ -262,17 +359,24 @@
             </p>
         </div>
 
-        <!-- RODAPÉ NAVEGAÇÃO POR TECLADO -->
-        <div class="footer-nav">
-            Pressione as setas <span class="key-hint">←</span> e <span class="key-hint">→</span> do teclado para mudar as páginas
+        <!-- CONTROLES DE NAVEGAÇÃO POR BOTÕES -->
+        <div class="controls-container">
+            <button class="nav-btn" id="prevBtn" onclick="changePage(-1)">← Anterior</button>
+            <div class="footer-hint">Setas <span class="key-hint">←</span> <span class="key-hint">→</span> do teclado</div>
+            <button class="nav-btn" id="nextBtn" onclick="changePage(1)">Próxima →</button>
         </div>
     </div>
 
-    <!-- JAVASCRIPT: NAVEGAÇÃO POR SETAS E CONTROLE DE PÁGINAS -->
+    <!-- JAVASCRIPT: NAVEGAÇÃO POR BOTÕES E TECLADO -->
     <script>
         let currentPage = 1;
         const totalPages = 4;
         const romanNumerals = ["I", "II", "III", "IV"];
+
+        function updateButtons() {
+            document.getElementById('prevBtn').disabled = (currentPage === 1);
+            document.getElementById('nextBtn').disabled = (currentPage === totalPages);
+        }
 
         function showPage(pageIndex) {
             if (pageIndex < 1 || pageIndex > totalPages) return;
@@ -291,6 +395,11 @@
             document.getElementById('pageIndicator').innerText = `Página ${romanNumerals[pageIndex - 1]} de ${romanNumerals[totalPages - 1]}`;
 
             currentPage = pageIndex;
+            updateButtons();
+        }
+
+        function changePage(step) {
+            showPage(currentPage + step);
         }
 
         // Captura o evento das setas do teclado do PC
@@ -305,6 +414,10 @@
                 }
             }
         });
+
+        // Inicializa estado dos botões
+        updateButtons();
     </script>
 </body>
-</html>
+    </html>
+                        
