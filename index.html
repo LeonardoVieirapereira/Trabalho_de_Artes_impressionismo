@@ -1,1 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabalho de Artes: Impressionismo</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
+        body {
+            background-color: #1a1a2e;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Container Principal da Apresentação */
+        .presentation-container {
+            width: 90vw;
+            max-width: 1000px;
+            height: 80vh;
+            background: #16213e;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Área dos Slides */
+        .slides-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s ease-in-out;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Estilização dos Conteúdos */
+        h1 {
+            font-size: 2.8rem;
+            color: #e94560;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #00fff5;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #00fff5;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #dcdde1;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-left: 30px;
+            color: #dcdde1;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            color: #f8a5c2;
+            font-weight: bold;
+        }
+
+        /* Capa Especial */
+        .slide-cover {
+            text-align: center;
+            align-items: center;
+        }
+
+        .slide-cover h3 {
+            font-size: 1.5rem;
+            color: #8a8a8a;
+            margin-top: 10px;
+            font-weight: normal;
+        }
+
+        /* Navegação e Botões */
+        .controls {
+            height: 70px;
+            background: #0f3460;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .btn {
+            background-color: #e94560;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ff6b81;
+        }
+
+        .btn:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            font-size: 1rem;
+            color: #8a8a8a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="presentation-container">
+        <div class="slides-wrapper">
+
+            <!-- Slide 1: Capa -->
+            <div class="slide slide-cover active">
+                <h1>O IMPRESSIONISMO</h1>
+                <p style="font-size: 1.5rem; margin-top: 10px;">A Revolução da Luz e da Cor na Arte</p>
+                <h3>Trabalho de Artes Visuais</h3>
+            </div>
+
+            <!-- Slide 2: O que foi? -->
+            <div class="slide">
+                <h2>O que foi o Impressionismo?</h2>
+                <p>O <strong>Impressionismo</strong> foi um movimento artístico que emergiu na França na segunda metade do século XIX (década de 1870).</p>
+                <p>Os artistas romperam com as regras rígidas da <span class="highlight">Arte Acadêmica</span>, optando por pintar ao ar livre para capturar a luz solar e as transformações da natureza em tempo real.</p>
+            </div>
+
+            <!-- Slide 3: Principais Características -->
+            <div class="slide">
+                <h2>Principais Características</h2>
+                <ul>
+                    <li><strong>Luz Natural:</strong> Foco em como a luz do sol altera as cores dos objetos.</li>
+                    <li><strong>Pinceladas Soltas:</strong> Pinceladas rápidas e visíveis, sem preocupação com contornos definidos.</li>
+                    <li><strong>Mistura Óptica:</strong> Cores puras aplicadas lado a lado na tela para serem misturadas pelos olhos de quem vê.</li>
+                    <li><strong>Temas do Cotidiano:</strong> Paisagens naturais, cenas urbanas e vida boêmia de Paris.</li>
+                </ul>
+            </div>
+
+            <!-- Slide 4: Origem do Nome -->
+            <div class="slide">
+                <h2>Origem do Nome</h2>
+                <p>O termo "Impressionismo" surgiu de forma pejorativa através do crítico de arte Louis Leroy, ao comentar a obra <em>"Impressão, Nascer do Sol"</em> (1872) de <span class="highlight">Claude Monet</span>.</p>
+                <p>O crítico ironizou a pintura dizendo que ela parecia apenas um "esboço incompleto" ou uma simples "impressão". Os artistas gostaram do termo e o adotaram para o movimento.</p>
+            </div>
+
+            <!-- Slide 5: Principais Artistas -->
+            <div class="slide">
+                <h2>Principais Artistas</h2>
+                <ul>
+                    <li><strong>Claude Monet:</strong> O pai do impressionismo, famoso por suas séries de paisagens e vitórias-régias.</li>
+                    <li><strong>Pierre-Auguste Renoir:</strong> Destacou-se pelas cores vivas e celebração da vida social urbana.</li>
+                    <li><strong>Edgar Degas:</strong> Conhecido por capturar o movimento, especialmente em suas pinturas de bailarinas.</li>
+                    <li><strong>Berthe Morisot:</strong> Uma das mulheres mais importantes do movimento, retratando o universo feminino e familiar.</li>
+                </ul>
+            </div>
+
+            <!-- Slide 6: Conclusão -->
+            <div class="slide">
+                <h2>Conclusão e Impacto</h2>
+                <p>O Impressionismo não apenas mudou a forma de pintar, mas **libertou a arte** da obrigação de copiar fielmente a realidade.</p>
+                <p>Ele abriu caminho para a **Arte Moderna** e influenciou diretamente movimentos futuros como o Pós-Impressionismo, o Fovismo e o Cubismo.</p>
+            </div>
+
+        </div>
+
+        <!-- Controles dos Slides -->
+        <div class="controls">
+            <button class="btn" id="prevBtn" onclick="changeSlide(-1)" disabled>Anterior</button>
+            <div class="slide-counter" id="slideCounter">Slide 1 de 6</div>
+            <button class="btn" id="nextBtn" onclick="changeSlide(1)">Próximo</button>
+        </div>
+    </div>
+
+    <!-- Script para controle de navegação -->
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideCounter = document.getElementById('slideCounter');
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            // Atualiza contador
+            slideCounter.textContent = `Slide ${currentSlide + 1} de ${slides.length}`;
+
+            // Ativa/Desativa botões
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === slides.length - 1;
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = 0;
+            if (currentSlide >= slides.length) currentSlide = slides.length - 1;
+            updateSlide();
+        }
+
+        // Navegação por teclado (setas)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                if (currentSlide < slides.length - 1) changeSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) changeSlide(-1);
+            }
+        });
+    </script>
+</body>
+  </html>
+  
