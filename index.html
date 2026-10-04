@@ -3,362 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeria de Arte Interativa - Impressionismo & Arte Moderna</title>
+    <title>Trabalho de Artes - Impressionismo I</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* Configurações Gerais e Variáveis */
-        :root {
-            --primary-color: #6c5ce7;
-            --secondary-color: #a29bfe;
-            --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            --card-bg: rgba(255, 255, 255, 0.08);
-            --text-color: #ffffff;
-            --text-muted: #dcdde1;
-            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        .alt-theme {
-            --bg-gradient: linear-gradient(135deg, #11998e, #38ef7d);
-            --primary-color: #00b894;
-            --secondary-color: #55efc4;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: var(--bg-gradient);
-            background-attachment: fixed;
-            color: var(--text-color);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Navbar Estilo Glassmorphism */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 3rem;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--secondary-color);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-        }
-
-        .nav-btn {
-            color: var(--text-color);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            transition: var(--transition);
-        }
-
-        .nav-btn:hover, .nav-btn.active {
-            background: var(--primary-color);
-            box-shadow: 0 0 15px var(--primary-color);
-        }
-
-        /* Estrutura das Seções estilo Páginas (SPA) */
-        main {
-            margin-top: 80px;
-            flex: 1;
-        }
-
-        .page-section {
-            display: none;
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            animation: fadeIn 0.6s ease-in-out;
-        }
-
-        .page-section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Seção Hero (Início) */
-        #home {
-            text-align: center;
-            padding-top: 6rem;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #fff, var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .btn {
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 30px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .btn-primary {
-            background: var(--primary-color);
-            color: #fff;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid var(--primary-color);
-            color: #fff;
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary-color);
-        }
-
-        /* Galeria de Obras (Cards) */
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        .card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-
-        .card-info {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .card-info h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        .card-info p {
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
-
-        .btn-card {
-            background: var(--primary-color);
-            border: none;
-            color: white;
-            padding: 0.5rem 1.2rem;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .btn-card:hover {
-            filter: brightness(1.2);
-        }
-
-        /* Destaques do Impressionismo */
-        .features-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-box {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-        }
-
-        .feature-box:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-5px);
-        }
-
-        .feature-box .icon {
-            font-size: 2.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-        }
-
-        .info-article {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-top: 3rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            line-height: 1.6;
-        }
-
-        .info-article h3 {
-            margin-bottom: 1rem;
-            color: var(--secondary-color);
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(8px);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-
-        .modal-content {
-            background: #1e1e2f;
-            padding: 2rem;
-            border-radius: 15px;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            text-align: center;
-        }
-
-        .modal-content img {
-            width: 100%;
-            max-height: 250px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #fff;
-        }
-
-        /* Rodapé */
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            background: rgba(0,0,0,0.2);
-            margin-top: auto;
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                padding: 1rem;
-                gap: 0.8rem;
-            }
-
-            .nav-links {
-                gap: 0.8rem;
-                font-size: 0.9rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 250px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
 <body>
 
-    <!-- Cabeçalho / Navegação -->
+    <!-- Navegação / Cabeçalho -->
     <header class="navbar">
         <div class="logo">
-            <i class="fa-solid fa-palette"></i> <span>ArteVision</span>
+            <i class="fa-solid fa-palette"></i> <span>Arte & Impressionismo</span>
         </div>
         <nav>
             <ul class="nav-links">
                 <li><a href="#home" class="nav-btn active"><i class="fa-solid fa-house"></i> Início</a></li>
-                <li><a href="#artes" class="nav-btn"><i class="fa-solid fa-image"></i> Obras</a></li>
-                <li><a href="#impressionismo" class="nav-btn"><i class="fa-solid fa-brush"></i> Impressionismo</a></li>
-                <li><a href="#sobre" class="nav-btn"><i class="fa-solid fa-circle-info"></i> Sobre</a></li>
+                <li><a href="#enem" class="nav-btn"><i class="fa-solid fa-graduation-cap"></i> Questão ENEM</a></li>
+                <li><a href="#impressionismo" class="nav-btn"><i class="fa-solid fa-brush"></i> O Movimento</a></li>
+                <li><a href="#artes" class="nav-btn"><i class="fa-solid fa-image"></i> Galeria</a></li>
+                <li><a href="#pratica" class="nav-btn"><i class="fa-solid fa-pencil"></i> Atividade Prática</a></li>
             </ul>
         </nav>
     </header>
@@ -367,96 +29,119 @@
         <!-- Página 1: Início (Hero) -->
         <section id="home" class="page-section active">
             <div class="hero-content">
-                <h1>Explore a Beleza da Arte</h1>
-                <p>Uma imersão interativa entre a rutura do Impressionismo clássico e a experimentação da arte contemporânea[span_0](start_span)[span_0](end_span). Descubra técnicas, contextos e obras icónicas.</p>
+                <h1>Impressionismo I & Arte Contemporânea</h1>
+                <p>Material Didático de Artes - 1ª Série do Ensino Médio (Aula 42)</p>
                 <div class="hero-buttons">
-                    <button class="btn btn-primary" onclick="navigateTo('artes')">Ver Obras</button>
-                    <button class="btn btn-secondary" onclick="navigateTo('impressionismo')">Aprender Mais</button>
+                    <button class="btn btn-primary" onclick="navigateTo('impressionismo')">Explorar Movimento</button>
+                    <button class="btn btn-secondary" onclick="navigateTo('artes')">Ver Galeria</button>
                 </div>
             </div>
         </section>
 
-        <!-- Página 2: Obras Interativas -->
-        <section id="artes" class="page-section">
-            <h2 class="section-title">Galeria de Obras</h2>
-            <div class="gallery-grid">
-                
-                <div class="card" data-title="Dengo (2010)" data-author="Ernesto Neto" data-desc="Instalação contemporânea que convida o público a interagir diretamente com a estrutura e o espaço circundante, promovendo a participação ativa[span_1](start_span)[span_1](end_span).">
-                    <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=600&q=80" alt="Arte Contemporânea">
-                    <div class="card-info">
-                        <h3>Dengo (2010)</h3>
-                        <p>Ernesto Neto[span_2](start_span)[span_2](end_span)</p>
-                        <button class="btn-card" onclick="openModal(this)">Detalhes</button>
+        <!-- Página 2: Questão do ENEM -->
+        <section id="enem" class="page-section">
+            <h2 class="section-title">Análise de Questão - ENEM 2017</h2>
+            <div class="enem-container">
+                <div class="enem-card">
+                    <div class="enem-tag">Questão 37</div>
+                    <h3>Obra: <em>Dengo</em> (2010) – Ernesto Neto</h3>
+                    <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800&q=80" alt="Instalação Interativa Contemporânea" class="enem-img">
+                    <p class="enem-desc">
+                        A obra de Ernesto Neto é uma <strong>instalação contemporânea</strong> na qual o espaço é transformado para que os visitantes possam entrar, tocar e interagir diretamente com o ambiente.
+                    </p>
+                    <div class="enem-solution">
+                        <h4><i class="fa-solid fa-circle-check"></i> Gabarito Comentado: Alternativa A</h4>
+                        <p><strong>"Participação do público na interação lúdica com a obra"</strong>: O foco da instalação contemporânea é quebrar a barreira entre observador e obra, convidando o público a vivenciar a arte de forma sensorial.</p>
                     </div>
                 </div>
-
-                <div class="card" data-title="Mulher no Jardim (1866)" data-author="Claude Monet" data-desc="Obra emblemática do início do impressionismo, focada nos efeitos dinâmicos da luz natural refletida sobre as roupas e as plantas[span_3](start_span)[span_3](end_span).">
-                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80" alt="Mulher no Jardim">
-                    <div class="card-info">
-                        <h3>Mulher no Jardim</h3>
-                        <p>Claude Monet[span_4](start_span)[span_4](end_span)</p>
-                        <button class="btn-card" onclick="openModal(this)">Detalhes</button>
-                    </div>
-                </div>
-
-                <div class="card" data-title="Jeanne Samary (1877)" data-author="Pierre-Auguste Renoir" data-desc="Retrato impressionista vibrante que utiliza pinceladas fluidas e suaves para capturar a luz e a expressão viva da atriz[span_5](start_span)[span_5](end_span).">
-                    <img src="https://images.unsplash.com/photo-1582561221801-b2149b56f874?auto=format&fit=crop&w=600&q=80" alt="Jeanne Samary">
-                    <div class="card-info">
-                        <h3>Jeanne Samary</h3>
-                        <p>Pierre-Auguste Renoir[span_6](start_span)[span_6](end_span)</p>
-                        <button class="btn-card" onclick="openModal(this)">Detalhes</button>
-                    </div>
-                </div>
-
-                <div class="card" data-title="The Pont-Neuf (1902)" data-author="Camille Pissarro" data-desc="Vista urbana de Paris capturada sob a atmosfera variável do dia, mostrando o movimento da cidade através de traços rápidos[span_7](start_span)[span_7](end_span).">
-                    <img src="https://images.unsplash.com/photo-1578926375605-eaf7559b1458?auto=format&fit=crop&w=600&q=80" alt="The Pont-Neuf">
-                    <div class="card-info">
-                        <h3>The Pont-Neuf</h3>
-                        <p>Camille Pissarro[span_8](start_span)[span_8](end_span)</p>
-                        <button class="btn-card" onclick="openModal(this)">Detalhes</button>
-                    </div>
-                </div>
-
             </div>
         </section>
 
-        <!-- Página 3: Impressionismo -->
+        <!-- Página 3: O Movimento Impressionista -->
         <section id="impressionismo" class="page-section">
-            <h2 class="section-title">O Movimento Impressionista</h2>
+            <h2 class="section-title">O Impressionismo</h2>
+            
+            <div class="info-block">
+                <h3><i class="fa-solid fa-clock-rotate-left"></i> Contexto Histórico e Tecnológico</h3>
+                <p>O Impressionismo surgiu na França entre as décadas de 1860 e 1880, num período de intensa industrialização. O surgimento e a popularização da <strong>câmera fotográfica</strong> mudaram radicalmente a função da pintura: os artistas deixaram de ter o compromisso de reproduzir a realidade de forma puramente realista.</p>
+            </div>
+
             <div class="features-container">
                 <div class="feature-box">
                     <i class="fa-solid fa-sun icon"></i>
                     <h3>Pintura ao Ar Livre</h3>
-                    <p>Uso da técnica <em>en plein air</em> para capturar as transformações da luz natural e clima nas paisagens[span_9](start_span)[span_9](end_span).</p>
-                </div>
-                <div class="feature-box">
-                    <i class="fa-solid fa-camera icon"></i>
-                    <h3>Impacto da Fotografia</h3>
-                    <p>Com o avanço da fotografia, a pintura libertou-se da obrigação de reproduzir a realidade com precisão realista[span_10](start_span)[span_10](end_span).</p>
+                    <p>Uso da técnica <em>en plein air</em>. Os pintores saíam dos ateliês para capturar as transformações da luz natural sobre a paisagem.</p>
                 </div>
                 <div class="feature-box">
                     <i class="fa-solid fa-wand-magic-sparkles icon"></i>
-                    <h3>Rotura Académica</h3>
-                    <p>Abandono do contorno rígido, eliminação do preto puro nas sombras e adoção de pinceladas visíveis e rápidas[span_11](start_span)[span_11](end_span).</p>
+                    <h3>Técnica e Pincelada</h3>
+                    <p>Uso de pinceladas curtas e rápidas. Ruptura com o <em>sfumato</em> tradicional e abandono do uso de cor preta pura nas sombras.</p>
                 </div>
-            </div>
-
-            <div class="info-article">
-                <h3>Contexto Histórico & Técnicas</h3>
-                <p>O Impressionismo emergiu na França na segunda metade do século XIX (entre 1860 e 1880) num período de grandes transformações industriais e urbanas[span_12](start_span)[span_12](end_span). Os artistas deste movimento rejeitaram as regras rígidas da arte académica, preferindo pintar cenas do quotidiano e da natureza diretamente no local, focando nas impressões visuais e efêmeras causadas pela luz do sol[span_13](start_span)[span_13](end_span).</p>
+                <div class="feature-box">
+                    <i class="fa-solid fa-eye icon"></i>
+                    <h3>A "Impressão" do Momento</h3>
+                    <p>Em vez de detalhes minuciosos e contornos bem definidos, valorizava-se a percepção visual rápida da luz e da cor.</p>
+                </div>
             </div>
         </section>
 
-        <!-- Página 4: Sobre -->
-        <section id="sobre" class="page-section">
-            <h2 class="section-title">Sobre o Projeto</h2>
-            <div class="feature-box" style="text-align: left; max-width: 800px; margin: 0 auto;">
-                <p style="margin-bottom: 1.5rem;">Este portal interativo foi construído como um recurso didático de Arte, focado na transição entre o Impressionismo do século XIX e as linguagens contemporâneas como as instalações[span_14](start_span)[span_14](end_span).</p>
+        <!-- Página 4: Galeria Interativa -->
+        <section id="artes" class="page-section">
+            <h2 class="section-title">Galeria de Obras Destacadas</h2>
+            <div class="gallery-grid">
                 
-                <div style="text-align: center; margin-top: 2rem;">
-                    <h3>Personalização de Estilo</h3>
-                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Alterne o esquema de cores para personalizar a visualização:</p>
-                    <button id="themeToggle" class="btn btn-primary"><i class="fa-solid fa-palette"></i> Mudar Tema Visual</button>
+                <div class="card" data-title="Mulher no Jardim (1866)" data-author="Claude Monet" data-desc="Estudo pioneiro sobre a incidência da luz do sol sobre as roupas, vegetação e sombras num ambiente externo.">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/a4/Claude_Monet_-_Women_in_the_Garden_-_Google_Art_Project.jpg/800px-Claude_Monet_-_Women_in_the_Garden_-_Google_Art_Project.jpg" alt="Mulher no Jardim - Monet">
+                    <div class="card-info">
+                        <h3>Mulher no Jardim</h3>
+                        <p>Claude Monet (1866)</p>
+                        <button class="btn-card" onclick="openModal(this)">Detalhes</button>
+                    </div>
+                </div>
+
+                <div class="card" data-title="Boulevard des Capucines (1874)" data-author="Claude Monet" data-desc="Captura o movimento vibrante de uma grande avenida em Paris, onde os pedestres são retratados com pequenas pinceladas rápidas.">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Claude_Monet_-_Boulevard_des_Capucines_-_Google_Art_Project.jpg/800px-Claude_Monet_-_Boulevard_des_Capucines_-_Google_Art_Project.jpg" alt="Boulevard des Capucines - Monet">
+                    <div class="card-info">
+                        <h3>Boulevard des Capucines</h3>
+                        <p>Claude Monet (1874)</p>
+                        <button class="btn-card" onclick="openModal(this)">Detalhes</button>
+                    </div>
+                </div>
+
+                <div class="card" data-title="Jeanne Samary em um vestido decotado (1877)" data-author="Pierre-Auguste Renoir" data-desc="Retrato impressionista marcado pelo calor das cores, vivacidade do olhar e delicadeza no tratamento das luzes sobre a pele.">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Pierre-Auguste_Renoir_-_Portrait_of_Jeanne_Samary_-_Google_Art_Project.jpg/800px-Pierre-Auguste_Renoir_-_Portrait_of_Jeanne_Samary_-_Google_Art_Project.jpg" alt="Jeanne Samary - Renoir">
+                    <div class="card-info">
+                        <h3>Jeanne Samary</h3>
+                        <p>Pierre-Auguste Renoir (1877)</p>
+                        <button class="btn-card" onclick="openModal(this)">Detalhes</button>
+                    </div>
+                </div>
+
+                <div class="card" data-title="The Pont-Neuf (1902)" data-author="Camille Pissarro" data-desc="Exemplo da maturidade impressionista retratando arquitetura, pontes e o rio Sena sob variações atmosféricas e de iluminação.">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Camille_Pissarro_-_The_Pont_Neuf_-_Google_Art_Project.jpg/800px-Camille_Pissarro_-_The_Pont_Neuf_-_Google_Art_Project.jpg" alt="The Pont-Neuf - Pissarro">
+                    <div class="card-info">
+                        <h3>The Pont-Neuf</h3>
+                        <p>Camille Pissarro (1902)</p>
+                        <button class="btn-card" onclick="openModal(this)">Detalhes</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Página 5: Atividade Prática -->
+        <section id="pratica" class="page-section">
+            <h2 class="section-title">Atividade Prática do Aluno</h2>
+            <div class="about-card">
+                <h3><i class="fa-solid fa-paintbrush"></i> Como Fazer o Teu Desenho Impressionista</h3>
+                <p>Siga estes 3 passos para criar uma obra inspirada na Aula 42:</p>
+                <ol class="steps-list">
+                    <li><strong>Escolha do Local:</strong> Observe uma paisagem ao ar livre (um jardim, janela ou praça) ou escolha uma fotografia de paisagem.</li>
+                    <li><strong>Elimine os Contornos:</strong> Não desenhe linhas pretas rígidas para contornar os objetos. Deixe que as cores definam as formas.</li>
+                    <li><strong>Pinceladas/Traços Curtos:</strong> Utilize pequenas marcas de lápis de cor, giz ou tinta lado a lado para representar os reflexos de luz.</li>
+                </ol>
+                <div class="interactive-demo">
+                    <button id="themeToggle" class="btn btn-primary"><i class="fa-solid fa-circle-half-stroke"></i> Alternar Tema Visual</button>
                 </div>
             </div>
         </section>
@@ -468,85 +153,15 @@
             <span class="close-btn" onclick="closeModal()">&times;</span>
             <img id="modalImg" src="" alt="Obra de Arte">
             <h2 id="modalTitle"></h2>
-            <h4 id="modalAuthor" style="color: var(--secondary-color); margin: 0.5rem 0 1rem 0;"></h4>
-            <p id="modalDesc" style="color: var(--text-muted); line-height: 1.5;"></p>
+            <h4 id="modalAuthor"></h4>
+            <p id="modalDesc"></p>
         </div>
     </div>
 
-    <!-- Rodapé -->
     <footer>
-        <p>&copy; 2026 ArteVision - Projeto Educativo de Arte.</p>
+        <p>&copy; 2026 - Trabalho Escolar de Artes | 1ª Série do Ensino Médio</p>
     </footer>
 
-    <script>
-        // Navegação em estilo Single Page Application (SPA)
-        const navButtons = document.querySelectorAll('.nav-btn');
-        const pageSections = document.querySelectorAll('.page-section');
-
-        function navigateTo(targetId) {
-            pageSections.forEach(section => {
-                section.classList.remove('active');
-            });
-
-            navButtons.forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            const targetSection = document.getElementById(targetId);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
-
-            const activeBtn = document.querySelector(`.nav-btn[href="#${targetId}"]`);
-            if (activeBtn) {
-                activeBtn.classList.add('active');
-            }
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        navButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = button.getAttribute('href').replace('#', '');
-                navigateTo(targetId);
-            });
-        });
-
-        // Controlo da Janela Pop-up (Modal)
-        const modal = document.getElementById('artModal');
-        const modalImg = document.getElementById('modalImg');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalAuthor = document.getElementById('modalAuthor');
-        const modalDesc = document.getElementById('modalDesc');
-
-        function openModal(buttonElement) {
-            const card = buttonElement.closest('.card');
-            
-            modalImg.src = card.querySelector('img').src;
-            modalTitle.textContent = card.dataset.title;
-            modalAuthor.textContent = card.dataset.author;
-            modalDesc.textContent = card.dataset.desc;
-
-            modal.style.display = 'flex';
-        }
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-
-        window.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                closeModal();
-            }
-        });
-
-        // Alternador de Temas Dinâmico
-        const themeBtn = document.getElementById('themeToggle');
-        themeBtn.addEventListener('click', () => {
-            document.body.classList.toggle('alt-theme');
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
-                        </html>
-    
+</html>
