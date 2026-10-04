@@ -3,421 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O Impressionismo - Uma Jornada nas Cores da Luz</title>
-    <!-- Fontes clássicas / antigas -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-
-    <style>
-        /* Palette de Cores de Pinturas Antigas / Envelhecidas */
-        :root {
-            --bg-canvas: #e2d7c5;
-            --bg-paper: #f2e8d8;
-            --brown-dark: #3a2b1d;
-            --brown-muted: #7a6349;
-            --sepia-border: #b8a388;
-            --gold-accent: #9a783e;
-            --font-title: 'Cinzel Decorative', serif;
-            --font-body: 'Playfair Display', serif;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: var(--bg-canvas);
-            background-image: radial-gradient(#ccbc9e 1px, transparent 1px);
-            background-size: 24px 24px;
-            color: var(--brown-dark);
-            font-family: var(--font-body);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
-        }
-
-        /* Moldura de Livro Antigo / Quadro */
-        .book-container {
-            width: 92%;
-            max-width: 900px;
-            height: 88vh;
-            max-height: 700px;
-            background: var(--bg-paper);
-            border: 12px solid var(--brown-dark);
-            outline: 2px solid var(--gold-accent);
-            box-shadow: inset 0 0 40px rgba(58, 43, 29, 0.25), 0 20px 45px rgba(0,0,0,0.5);
-            border-radius: 6px;
-            position: relative;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        /* Indicador do número da página */
-        .page-indicator {
-            position: absolute;
-            top: 18px;
-            right: 28px;
-            font-size: 0.95rem;
-            color: var(--brown-muted);
-            letter-spacing: 2px;
-            font-style: italic;
-            font-weight: 600;
-        }
-
-        /* Páginas */
-        .page {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.7s ease-in-out;
-            height: 100%;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .page.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        h1, h2 {
-            font-family: var(--font-title);
-            color: var(--brown-dark);
-            text-align: center;
-            margin-bottom: 15px;
-            text-shadow: 1px 1px 2px rgba(184, 163, 136, 0.4);
-            line-height: 1.3;
-        }
-
-        h1 { 
-            font-size: 2.1rem; 
-            letter-spacing: 1px;
-        }
-        
-        h2 { 
-            font-size: 1.6rem; 
-            border-bottom: 1px solid var(--sepia-border); 
-            padding-bottom: 8px; 
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            text-align: justify;
-            color: var(--brown-dark);
-            margin-bottom: 12px;
-            text-indent: 20px;
-        }
-
-        .intro-text {
-            text-indent: 0;
-            font-style: italic;
-            text-align: center;
-            color: var(--brown-muted);
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-
-        /* Moldura SVG da Imagem Pintada */
-        .artwork-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 480px;
-            height: 250px;
-            margin: 10px auto 15px auto;
-            border: 8px solid var(--brown-muted);
-            outline: 1px solid var(--gold-accent);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            overflow: hidden;
-            background-color: var(--brown-dark);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .artwork-svg {
-            width: 100%;
-            height: 100%;
-            /* Animação que simula o pincel pintando a tela ao revelar a imagem */
-            clip-path: circle(0% at 50% 50%);
-            transition: clip-path 2.2s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        /* Ao ativar a página, o efeito do pincel abre a tela */
-        .page.active .artwork-svg {
-            clip-path: circle(120% at 50% 50%);
-        }
-
-        /* Legenda da pintura antiga */
-        .caption {
-            text-align: center;
-            font-style: italic;
-            font-size: 0.9rem;
-            color: var(--brown-muted);
-            margin-top: -5px;
-            margin-bottom: 10px;
-        }
-
-        /* Lista estilizada na página 2 */
-        .features-list {
-            list-style: none;
-            margin-top: 5px;
-        }
-
-        .features-list li {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            margin-bottom: 10px;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .features-list li::before {
-            content: "❧";
-            position: absolute;
-            left: 0;
-            color: var(--gold-accent);
-            font-size: 1.2rem;
-        }
-
-        /* Controles de Navegação por Botão e Teclado */
-        .controls-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid var(--sepia-border);
-            padding-top: 15px;
-            margin-top: 10px;
-        }
-
-        .nav-btn {
-            background-color: var(--bg-canvas);
-            color: var(--brown-dark);
-            border: 2px solid var(--brown-muted);
-            padding: 8px 18px;
-            font-family: var(--font-body);
-            font-size: 0.95rem;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-        }
-
-        .nav-btn:hover:not(:disabled) {
-            background-color: var(--gold-accent);
-            color: #fff;
-            border-color: var(--brown-dark);
-        }
-
-        .nav-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-            border-color: var(--sepia-border);
-        }
-
-        .footer-hint {
-            font-size: 0.8rem;
-            color: var(--brown-muted);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            text-align: center;
-        }
-
-        .key-hint {
-            background-color: var(--sepia-border);
-            color: var(--brown-dark);
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-weight: bold;
-        }
-    </style>
+    <title>Galeria de Arte Interativa</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="book-container">
-        <div class="page-indicator" id="pageIndicator">Página I de IV</div>
-
-        <!-- PÁGINA 1: INTRODUÇÃO -->
-        <div class="page active" id="page-1">
-            <h1>O Impressionismo</h1>
-            <p class="intro-text">"A luz é a principal personagem da tela."</p>
-            <p>
-                O Impressionismo foi um movimento artístico revolucionário emergido na França na segunda metade do século XIX. Rompendo com o academicismo e com as regras rígidas do Salon de Paris, os impressionistas buscaram registrar a luz natural, a atmosfera e as impressões efêmeras da vida moderna.
-            </p>
-            <div class="artwork-wrapper">
-                <!-- Pintura em SVG Vetorial (Impression, Soleil Levant) -->
-                <svg class="artwork-svg" viewBox="0 0 500 260" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stop-color="#3d332a" />
-                            <stop offset="30%" stop-color="#8a5e3c" />
-                            <stop offset="60%" stop-color="#c98353" />
-                            <stop offset="100%" stop-color="#d6b088" />
-                        </linearGradient>
-                        <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stop-color="#ff7b3d" />
-                            <stop offset="50%" stop-color="#e06331" stop-opacity="0.8" />
-                            <stop offset="100%" stop-color="#c98353" stop-opacity="0" />
-                        </radialGradient>
-                    </defs>
-                    <rect width="500" height="260" fill="url(#skyGrad)" />
-                    <rect y="140" width="500" height="120" fill="#2d3330" />
-                    <rect y="140" width="500" height="120" fill="#a8744d" opacity="0.3" />
-                    <circle cx="320" cy="110" r="45" fill="url(#sunGlow)" />
-                    <circle cx="320" cy="110" r="14" fill="#ff521b" />
-                    <ellipse cx="320" cy="148" rx="20" ry="2" fill="#ff521b" opacity="0.9" />
-                    <ellipse cx="318" cy="156" rx="35" ry="3" fill="#ff521b" opacity="0.8" />
-                    <ellipse cx="322" cy="166" rx="28" ry="2.5" fill="#e06331" opacity="0.8" />
-                    <ellipse cx="315" cy="176" rx="42" ry="3" fill="#e06331" opacity="0.7" />
-                    <ellipse cx="325" cy="188" rx="25" ry="2" fill="#c98353" opacity="0.8" />
-                    <ellipse cx="310" cy="200" rx="50" ry="3.5" fill="#ff521b" opacity="0.6" />
-                    <ellipse cx="318" cy="215" rx="30" ry="2" fill="#c98353" opacity="0.5" />
-                    <line x1="120" y1="80" x2="120" y2="145" stroke="#1c211f" stroke-width="2" opacity="0.5" />
-                    <line x1="140" y1="60" x2="140" y2="145" stroke="#1c211f" stroke-width="3" opacity="0.6" />
-                    <line x1="160" y1="90" x2="160" y2="145" stroke="#1c211f" stroke-width="1.5" opacity="0.4" />
-                    <line x1="380" y1="70" x2="380" y2="145" stroke="#1c211f" stroke-width="2" opacity="0.5" />
-                    <path d="M 210,170 Q 235,178 260,170 Q 240,165 210,170 Z" fill="#141a18" />
-                    <circle cx="230" cy="162" r="4" fill="#141a18" />
-                    <line x1="235" y1="162" x2="225" y2="182" stroke="#141a18" stroke-width="2" />
-                    <path d="M 150,195 Q 185,205 220,195 Q 190,188 150,195 Z" fill="#0d1210" />
-                    <circle cx="180" cy="184" r="5" fill="#0d1210" />
-                    <line x1="188" y1="184" x2="170" y2="212" stroke="#0d1210" stroke-width="2.5" />
-                </svg>
-            </div>
-            <div class="caption">"Impression, soleil levant" (1872) — Claude Monet. Recriação temática da obra.</div>
+    <!-- Cabeçalho / Navegação -->
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-palette"></i> <span>ArteVision</span>
         </div>
-
-        <!-- PÁGINA 2: CARACTERÍSTICAS -->
-        <div class="page" id="page-2">
-            <h2>Técnicas e Características</h2>
-            <p>
-                Os pintores impressionistas transformaram a forma de enxergar e representar o mundo ao seu redor através de novas abordagens estéticas:
-            </p>
-            <ul class="features-list">
-                <li><strong>Pintura ao Ar Livre (En plein air):</strong> Abandono do ateliê para capturar as transformações da luz solar em tempo real.</li>
-                <li><strong>Pinceladas Rápidas e Visíveis:</strong> Toques de tinta que deixam a textura do pincel evidente na tela.</li>
-                <li><strong>Mistura Óptica de Cores:</strong> Cores puras aplicadas lado a lado para serem fundidas pelo olhar do espectador.</li>
-                <li><strong>Sombras Coloridas:</strong> As sombras deixaram de ser pretas ou cinzas e passaram a refletir tons violetas e azulados.</li>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-btn active"><i class="fa-solid fa-house"></i> Início</a></li>
+                <li><a href="#artes" class="nav-btn"><i class="fa-solid fa-image"></i> Obras</a></li>
+                <li><a href="#impressionismo" class="nav-btn"><i class="fa-solid fa-brush"></i> Impressionismo</a></li>
+                <li><a href="#sobre" class="nav-btn"><i class="fa-solid fa-circle-info"></i> Sobre</a></li>
             </ul>
-        </div>
+        </nav>
+    </header>
 
-        <!-- PÁGINA 3: GRANDES MESTRES -->
-        <div class="page" id="page-3">
-            <h2>Os Grandes Mestres</h2>
-            <p>
-                A essência do movimento foi moldada por artistas visionários que imortalizaram a sensibilidade da luz e do cotidiano parisiense.
-            </p>
-            <div class="artwork-wrapper">
-                <!-- Pintura em SVG Vetorial (Bal du moulin de la Galette - Renoir) -->
-                <svg class="artwork-svg" viewBox="0 0 500 260" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <radialGradient id="danceLight" cx="50%" cy="30%" r="70%">
-                            <stop offset="0%" stop-color="#f5e1a4" />
-                            <stop offset="50%" stop-color="#b88d58" />
-                            <stop offset="100%" stop-color="#3b2d1d" />
-                        </radialGradient>
-                    </defs>
-                    <rect width="500" height="260" fill="url(#danceLight)" />
-                    <circle cx="80" cy="60" r="70" fill="#2d3b22" opacity="0.7" />
-                    <circle cx="220" cy="40" r="90" fill="#3a4a2b" opacity="0.6" />
-                    <circle cx="400" cy="70" r="80" fill="#25331b" opacity="0.8" />
-                    <circle cx="100" cy="120" r="15" fill="#fff5cc" opacity="0.4" />
-                    <circle cx="180" cy="90" r="22" fill="#fff5cc" opacity="0.5" />
-                    <circle cx="270" cy="140" r="18" fill="#fff5cc" opacity="0.3" />
-                    <circle cx="340" cy="100" r="25" fill="#fff5cc" opacity="0.45" />
-                    <circle cx="420" cy="160" r="20" fill="#fff5cc" opacity="0.35" />
-                    <ellipse cx="150" cy="200" rx="25" ry="45" fill="#1f1811" />
-                    <circle cx="150" cy="145" r="12" fill="#d9b18f" />
-                    <ellipse cx="190" cy="205" rx="22" ry="40" fill="#5c4433" />
-                    <circle cx="190" cy="155" r="11" fill="#e0c2a6" />
-                    <ellipse cx="300" cy="190" rx="30" ry="50" fill="#182333" />
-                    <circle cx="300" cy="130" r="14" fill="#cca485" />
-                    <ellipse cx="300" cy="118" rx="20" ry="5" fill="#d9b652" />
-                    <ellipse cx="350" cy="200" rx="28" ry="45" fill="#6e2d33" />
-                    <circle cx="350" cy="142" r="12" fill="#e8cbb0" />
-                </svg>
+    <main>
+        <!-- Página 1: Início (Hero) -->
+        <section id="home" class="page-section active">
+            <div class="hero-content fade-in">
+                <h1>Explore a Beleza da Arte</h1>
+                <p>Uma imersão interativa entre o Impressionismo clássico e a arte contemporânea.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="navigateTo('artes')">Ver Obras</button>
+                    <button class="btn btn-secondary" onclick="navigateTo('impressionismo')">Saber Mais</button>
+                </div>
             </div>
-            <div class="caption">"Bal du moulin de la Galette" (1876) — Pierre-Auguste Renoir. Atmosfera de dança e luz.</div>
-        </div>
+        </section>
 
-        <!-- PÁGINA 4: O LEGADO -->
-        <div class="page" id="page-4">
-            <h2>O Legado na História da Arte</h2>
-            <p>
-                Apesar de inicialmente rejeitados pelos críticos tradicionais, os impressionistas libertaram a pintura das amarras da representação fotográfica. Ao dar primazia à percepção individual e à subjetividade, o Impressionismo abriu o caminho para todas as vanguardas do século XX.
-            </p>
-            <p>
-                Nomes como Claude Monet, Pierre-Auguste Renoir, Edgar Degas, Camille Pissarro e Berthe Morisot redefiniram para sempre a relação entre a arte, o tempo e a luz.
-            </p>
-        </div>
+        <!-- Página 2: Obras Interativas -->
+        <section id="artes" class="page-section">
+            <h2 class="section-title">Galeria de Obras</h2>
+            <div class="gallery-grid">
+                
+                <div class="card" data-title="Dengo (2010)" data-author="Ernesto Neto" data-desc="Instalação contemporânea que convida o público a interagir com o espaço e com a obra.">
+                    <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=600&q=80" alt="Arte Contemporânea">
+                    <div class="card-info">
+                        <h3>Dengo (2010)</h3>
+                        <p>Ernesto Neto</p>
+                        <button class="btn-card" onclick="openModal(this)">Detalhes</button>
+                    </div>
+                </div>
 
-        <!-- CONTROLES DE NAVEGAÇÃO POR BOTÕES -->
-        <div class="controls-container">
-            <button class="nav-btn" id="prevBtn" onclick="changePage(-1)">← Anterior</button>
-            <div class="footer-hint">Setas <span class="key-hint">←</span> <span class="key-hint">→</span> do teclado</div>
-            <button class="nav-btn" id="nextBtn" onclick="changePage(1)">Próxima →</button>
+                <div class="card" data-title="Mulher no Jardim (1866)" data-author="Claude Monet" data-desc="Exemplo marcante da pintura ao ar livre com o estudo da luz natural e sombras coloridas.">
+                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80" alt="Mulher no Jardim">
+                    <div class="card-info">
+                        <h3>Mulher no Jardim</h3>
+                        <p>Claude Monet</p>
+                        <button class="btn-card" onclick="openModal(this)">Detalhes</button>
+                    </div>
+                </div>
+
+                <div class="card" data-title="Jeanne Samary (1877)" data-author="Pierre-Auguste Renoir" data-desc="Retrato impressionista com pinceladas leves, vibrantes e foco na luminosidade da pele.">
+                    <img src="https://images.unsplash.com/photo-1582561221801-b2149b56f874?auto=format&fit=crop&w=600&q=80" alt="Jeanne Samary">
+                    <div class="card-info">
+                        <h3>Jeanne Samary</h3>
+                        <p>Pierre-Auguste Renoir</p>
+                        <button class="btn-card" onclick="openModal(this)">Detalhes</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Página 3: Impressionismo -->
+        <section id="impressionismo" class="page-section">
+            <h2 class="section-title">O Movimento Impressionista</h2>
+            <div class="features-container">
+                <div class="feature-box">
+                    <i class="fa-solid fa-sun icon"></i>
+                    <h3>Pintura ao Ar Livre</h3>
+                    <p>Uso da técnica <em>en plein air</em> para capturar as transformações da luz natural nas paisagens.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fa-solid fa-camera icon"></i>
+                    <h3>Impacto da Fotografia</h3>
+                    <p>Com o surgimento da câmera, a pintura libertou-se do compromisso de retratar fielmente a realidade.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fa-solid fa-wand-magic-sparkles icon"></i>
+                    <h3>Ruptura Acadêmica</h3>
+                    <p>Abandono de contornos nítidos, ausência do preto puro nas sombras e uso de pinceladas rápidas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Página 4: Sobre -->
+        <section id="sobre" class="page-section">
+            <h2 class="section-title">Sobre o Projeto</h2>
+            <div class="about-card">
+                <p>Este site foi desenvolvido para apresentar de forma interativa e dinâmica os conceitos e obras estudados sobre a arte e o Impressionismo.</p>
+                <div class="interactive-demo">
+                    <h3>Trocar Tema Visual</h3>
+                    <button id="themeToggle" class="btn btn-primary"><i class="fa-solid fa-moon"></i> Alternar Cores</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal (Janela Pop-up para detalhes das obras) -->
+    <div id="artModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <img id="modalImg" src="" alt="Obra de Arte">
+            <h2 id="modalTitle"></h2>
+            <h4 id="modalAuthor"></h4>
+            <p id="modalDesc"></p>
         </div>
     </div>
 
-    <!-- JAVASCRIPT: NAVEGAÇÃO POR BOTÕES E TECLADO -->
-    <script>
-        let currentPage = 1;
-        const totalPages = 4;
-        const romanNumerals = ["I", "II", "III", "IV"];
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2026 ArteVision - Todos os direitos reservados.</p>
+    </footer>
 
-        function updateButtons() {
-            document.getElementById('prevBtn').disabled = (currentPage === 1);
-            document.getElementById('nextBtn').disabled = (currentPage === totalPages);
-        }
-
-        function showPage(pageIndex) {
-            if (pageIndex < 1 || pageIndex > totalPages) return;
-
-            // Oculta todas as páginas
-            for (let i = 1; i <= totalPages; i++) {
-                const page = document.getElementById(`page-${i}`);
-                page.classList.remove('active');
-            }
-
-            // Ativa a página atual
-            const activePage = document.getElementById(`page-${pageIndex}`);
-            activePage.classList.add('active');
-
-            // Atualiza o indicador numérico em algarismos romanos
-            document.getElementById('pageIndicator').innerText = `Página ${romanNumerals[pageIndex - 1]} de ${romanNumerals[totalPages - 1]}`;
-
-            currentPage = pageIndex;
-            updateButtons();
-        }
-
-        function changePage(step) {
-            showPage(currentPage + step);
-        }
-
-        // Captura o evento das setas do teclado do PC
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'ArrowRight') {
-                if (currentPage < totalPages) {
-                    showPage(currentPage + 1);
-                }
-            } else if (event.key === 'ArrowLeft') {
-                if (currentPage > 1) {
-                    showPage(currentPage - 1);
-                }
-            }
-        });
-
-        // Inicializa estado dos botões
-        updateButtons();
-    </script>
+    <script src="script.js"></script>
 </body>
-    </html>
-                        
+</html>
