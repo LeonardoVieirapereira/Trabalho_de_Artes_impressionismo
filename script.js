@@ -1,69 +1,280 @@
-// Navegação do estilo Single Page Application (SPA)
-const navButtons = document.querySelectorAll('.nav-btn');
-const pageSections = document.querySelectorAll('.page-section');
+/* =====================================
+   CONFIGURAÇÃO
+===================================== */
 
-function navigateTo(targetId) {
-    pageSections.forEach(section => {
-        section.classList.remove('active');
-    });
+const scenes = document.querySelectorAll(".scene");
 
-    navButtons.forEach(btn => {
-        btn.classList.remove('active');
-    });
+const nextButton = document.getElementById("next");
+const prevButton = document.getElementById("prev");
 
-    const targetSection = document.getElementById(targetId);
-    if (targetSection) {
-        targetSection.classList.add('active');
-    }
+const currentNumber =
+    document.getElementById("currentNumber");
 
-    const activeBtn = document.querySelector(`.nav-btn[href="#${targetId}"]`);
-    if (activeBtn) {
-        activeBtn.classList.add('active');
-    }
+const progressBar =
+    document.getElementById("progressBar");
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+const restartButton =
+    document.querySelector(".restart-btn");
+
+let currentScene = 0;
+
+let isAnimating = false;
+
+
+/* =====================================
+   PARTÍCULAS
+===================================== */
+
+const particles =
+    document.getElementById("particles");
+
+for (let i = 0; i < 45; i++) {
+
+    const particle =
+        document.createElement("span");
+
+    particle.className = "particle";
+
+    particle.style.left =
+        Math.random() * 100 + "%";
+
+    particle.style.animationDuration =
+        8 + Math.random() * 15 + "s";
+
+    particle.style.animationDelay =
+        Math.random() * 10 + "s";
+
+    particle.style.opacity =
+        Math.random();
+
+    particles.appendChild(particle);
 }
 
-navButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = button.getAttribute('href').replace('#', '');
-        navigateTo(targetId);
+
+/* =====================================
+   MOSTRAR CENA
+===================================== */
+
+function showScene(index) {
+
+    if (isAnimating) return;
+
+    isAnimating = true;
+
+    if (index < 0)
+        index = scenes.length - 1;
+
+    if (index >= scenes.length)
+        index = 0;
+
+    currentScene = index;
+
+    scenes.forEach((scene, i) => {
+
+        scene.classList.toggle(
+            "active",
+            i === currentScene
+        );
+
     });
-});
 
-// Modal / Pop-up de Detalhes da Galeria
-const modal = document.getElementById('artModal');
-const modalImg = document.getElementById('modalImg');
-const modalTitle = document.getElementById('modalTitle');
-const modalAuthor = document.getElementById('modalAuthor');
-const modalDesc = document.getElementById('modalDesc');
 
-function openModal(buttonElement) {
-    const card = buttonElement.closest('.card');
-    
-    modalImg.src = card.querySelector('img').src;
-    modalTitle.textContent = card.dataset.title;
-    modalAuthor.textContent = card.dataset.author;
-    modalDesc.textContent = card.dataset.desc;
+    /* Número */
 
-    modal.style.display = 'flex';
+    currentNumber.textContent =
+        String(currentScene + 1)
+        .padStart(2, "0");
+
+
+    /* Barra */
+
+    const progress =
+        ((currentScene + 1) / scenes.length) * 100;
+
+    progressBar.style.width =
+        progress + "%";
+
+
+    setTimeout(() => {
+
+        isAnimating = false;
+
+    }, 900);
 }
 
-function closeModal() {
-    modal.style.display = 'none';
+
+/* =====================================
+   PRÓXIMA
+===================================== */
+
+function nextScene() {
+
+    showScene(currentScene + 1);
+
 }
 
-window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-        closeModal();
+
+/* =====================================
+   ANTERIOR
+===================================== */
+
+function previousScene() {
+
+    showScene(currentScene - 1);
+
+}
+
+
+nextButton.addEventListener(
+    "click",
+    nextScene
+);
+
+prevButton.addEventListener(
+    "click",
+    previousScene
+);
+
+
+/* =====================================
+   TECLADO
+===================================== */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "ArrowRight" ||
+            event.key === " "
+        ) {
+
+            nextScene();
+
+        }
+
+        if (event.key === "ArrowLeft") {
+
+            previousScene();
+
+        }
+
+        if (event.key === "Home") {
+
+            showScene(0);
+
+        }
+
+        if (event.key === "End") {
+
+            showScene(scenes.length - 1);
+
+        }
+
     }
-});
+);
 
-// Alternador de Temas
-const themeBtn = document.getElementById('themeToggle');
-if (themeBtn) {
-    themeBtn.addEventListener('click', () => {
-        document.body.classList.toggle('alt-theme');
-    });
-                        }
+
+/* =====================================
+   TOQUE NO CELULAR
+===================================== */
+
+let touchStartX = 0;
+
+let touchEndX = 0;
+
+document.addEventListener(
+    "touchstart",
+    event => {
+
+        touchStartX =
+            event.changedTouches[0].screenX;
+
+    }
+);
+
+document.addEventListener(
+    "touchend",
+    event => {
+
+        touchEndX =
+            event.changedTouches[0].screenX;
+
+        const distance =
+            touchEndX - touchStartX;
+
+        if (Math.abs(distance) < 50)
+            return;
+
+        if (distance < 0)
+            nextScene();
+
+        else
+            previousScene();
+
+    }
+);
+
+
+/* =====================================
+   BOTÃO RECOMEÇAR
+===================================== */
+
+if (restartButton) {
+
+    restartButton.addEventListener(
+        "click",
+        () => {
+
+            showScene(0);
+
+        }
+    );
+
+}
+
+
+/* =====================================
+   EFEITO DE MOVIMENTO DO MOUSE
+===================================== */
+
+document.addEventListener(
+    "mousemove",
+    event => {
+
+        const x =
+            (event.clientX /
+                window.innerWidth - .5);
+
+        const y =
+            (event.clientY /
+                window.innerHeight - .5);
+
+
+        const active =
+            document.querySelector(
+                ".scene.active"
+            );
+
+        if (!active) return;
+
+
+        const artwork =
+            active.querySelector(
+                ".hero-painting, .art-card, .light-art, .monet-art, .renoir-art, .dance-stage, .legacy"
+            );
+
+        if (!artwork) return;
+
+
+        artwork.style.transform =
+            `translate(${x * 8}px, ${y * 8}px)`;
+    }
+);
+
+
+/* =====================================
+   INÍCIO
+===================================== */
+
+showScene(0);
