@@ -3,165 +3,580 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trabalho de Artes - Impressionismo I</title>
+
+    <title>Impressionismo — Uma Revolução em Cores</title>
+
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-    <!-- Navegação / Cabeçalho -->
-    <header class="navbar">
-        <div class="logo">
-            <i class="fa-solid fa-palette"></i> <span>Arte & Impressionismo</span>
+    <!-- Fundo artístico -->
+    <div id="particles"></div>
+
+    <!-- Barra superior -->
+    <header class="topbar">
+
+        <div class="brand">
+            <span class="brand-mark">✦</span>
+            <span>ATELIÊ</span>
         </div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#home" class="nav-btn active"><i class="fa-solid fa-house"></i> Início</a></li>
-                <li><a href="#enem" class="nav-btn"><i class="fa-solid fa-graduation-cap"></i> Questão ENEM</a></li>
-                <li><a href="#impressionismo" class="nav-btn"><i class="fa-solid fa-brush"></i> O Movimento</a></li>
-                <li><a href="#artes" class="nav-btn"><i class="fa-solid fa-image"></i> Galeria</a></li>
-                <li><a href="#pratica" class="nav-btn"><i class="fa-solid fa-pencil"></i> Atividade Prática</a></li>
-            </ul>
-        </nav>
+
+        <div class="counter">
+            <span id="currentNumber">01</span>
+            <span class="line"></span>
+            <span>10</span>
+        </div>
+
     </header>
 
-    <main>
-        <!-- Página 1: Início (Hero) -->
-        <section id="home" class="page-section active">
-            <div class="hero-content">
-                <h1>Impressionismo I & Arte Contemporânea</h1>
-                <p>Material Didático de Artes - 1ª Série do Ensino Médio (Aula 42)</p>
-                <div class="hero-buttons">
-                    <button class="btn btn-primary" onclick="navigateTo('impressionismo')">Explorar Movimento</button>
-                    <button class="btn btn-secondary" onclick="navigateTo('artes')">Ver Galeria</button>
-                </div>
+
+    <!-- APRESENTAÇÃO -->
+    <main id="presentation">
+
+        <!-- CENA 1 -->
+        <section class="scene active" data-index="0">
+
+            <div class="scene-content cover">
+
+                <div class="eyebrow">HISTÓRIA DA ARTE • SÉCULO XIX</div>
+
+                <h1>
+                    IMPRESSION<span>ISMO</span>
+                </h1>
+
+                <p class="subtitle">
+                    Uma revolução feita de luz, cor e movimento.
+                </p>
+
+                <div class="paint-line"></div>
+
+                <p class="intro">
+                    Uma nova maneira de enxergar o mundo,
+                    transformando momentos passageiros em arte.
+                </p>
+
+                <button class="start-btn next-btn">
+                    Entrar na exposição
+                    <span>→</span>
+                </button>
+
             </div>
+
+            <div class="hero-painting">
+
+                <svg viewBox="0 0 600 500">
+
+                    <defs>
+
+                        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#9ed8e8"/>
+                            <stop offset="55%" stop-color="#f5c77e"/>
+                            <stop offset="100%" stop-color="#ef9870"/>
+                        </linearGradient>
+
+                        <filter id="blur">
+                            <feGaussianBlur stdDeviation="12"/>
+                        </filter>
+
+                    </defs>
+
+                    <rect width="600" height="500" fill="url(#sky)"/>
+
+                    <!-- Sol -->
+                    <circle cx="450" cy="120" r="55"
+                            fill="#ffe9a3"
+                            filter="url(#blur)"/>
+
+                    <circle cx="450" cy="120" r="32"
+                            fill="#fff1ad"/>
+
+                    <!-- Água -->
+                    <path d="M0 320 Q150 280 300 330 T600 315 V500 H0Z"
+                          fill="#5b9f9d"/>
+
+                    <path d="M0 355 Q150 320 300 360 T600 350"
+                          fill="none"
+                          stroke="#c8e0c2"
+                          stroke-width="18"
+                          opacity=".6"/>
+
+                    <!-- Ilhas -->
+                    <path d="M0 330 Q100 280 210 320 Q290 350 380 310 Q470 270 600 320 V380 H0Z"
+                          fill="#4c725e"/>
+
+                    <!-- Pinceladas -->
+                    <g opacity=".65">
+
+                        <path d="M70 150 L150 120"
+                              stroke="#fff0bb"
+                              stroke-width="18"
+                              stroke-linecap="round"/>
+
+                        <path d="M170 190 L250 160"
+                              stroke="#f4d89a"
+                              stroke-width="13"
+                              stroke-linecap="round"/>
+
+                        <path d="M300 90 L365 70"
+                              stroke="#fff3c7"
+                              stroke-width="16"
+                              stroke-linecap="round"/>
+
+                        <path d="M390 220 L470 205"
+                              stroke="#f4b17c"
+                              stroke-width="20"
+                              stroke-linecap="round"/>
+
+                    </g>
+
+                </svg>
+
+            </div>
+
         </section>
 
-        <!-- Página 2: Questão do ENEM -->
-        <section id="enem" class="page-section">
-            <h2 class="section-title">Análise de Questão - ENEM 2017</h2>
-            <div class="enem-container">
-                <div class="enem-card">
-                    <div class="enem-tag">Questão 37</div>
-                    <h3>Obra: <em>Dengo</em> (2010) – Ernesto Neto</h3>
-                    <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800&q=80" alt="Instalação Interativa Contemporânea" class="enem-img">
-                    <p class="enem-desc">
-                        A obra de Ernesto Neto é uma <strong>instalação contemporânea</strong> na qual o espaço é transformado para que os visitantes possam entrar, tocar e interagir diretamente com o ambiente.
-                    </p>
-                    <div class="enem-solution">
-                        <h4><i class="fa-solid fa-circle-check"></i> Gabarito Comentado: Alternativa A</h4>
-                        <p><strong>"Participação do público na interação lúdica com a obra"</strong>: O foco da instalação contemporânea é quebrar a barreira entre observador e obra, convidando o público a vivenciar a arte de forma sensorial.</p>
-                    </div>
+
+        <!-- CENA 2 -->
+        <section class="scene" data-index="1">
+
+            <div class="scene-content">
+
+                <div class="eyebrow">01 • O MOVIMENTO</div>
+
+                <h2>
+                    O que foi o
+                    <em>Impressionismo?</em>
+                </h2>
+
+                <p class="big-text">
+                    Uma nova forma de representar a realidade.
+                </p>
+
+                <p>
+                    O Impressionismo surgiu na França durante a segunda
+                    metade do século XIX. Os artistas passaram a abandonar
+                    algumas regras tradicionais da pintura acadêmica e
+                    buscaram registrar a sensação de um instante.
+                </p>
+
+                <div class="quote">
+                    <span>“</span>
+                    A pintura não precisava mostrar apenas aquilo que
+                    existia. Ela poderia mostrar aquilo que se sentia.
+                    <span>”</span>
                 </div>
+
             </div>
+
+            <div class="art-card impression-card">
+
+                <div class="sun"></div>
+
+                <div class="horizon"></div>
+
+                <div class="water">
+
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+
+                </div>
+
+            </div>
+
         </section>
 
-        <!-- Página 3: O Movimento Impressionista -->
-        <section id="impressionismo" class="page-section">
-            <h2 class="section-title">O Impressionismo</h2>
-            
-            <div class="info-block">
-                <h3><i class="fa-solid fa-clock-rotate-left"></i> Contexto Histórico e Tecnológico</h3>
-                <p>O Impressionismo surgiu na França entre as décadas de 1860 e 1880, num período de intensa industrialização. O surgimento e a popularização da <strong>câmera fotográfica</strong> mudaram radicalmente a função da pintura: os artistas deixaram de ter o compromisso de reproduzir a realidade de forma puramente realista.</p>
+
+        <!-- CENA 3 -->
+        <section class="scene" data-index="2">
+
+            <div class="scene-content">
+
+                <div class="eyebrow">02 • LUZ</div>
+
+                <h2>
+                    Pintar a
+                    <em>luz</em>
+                </h2>
+
+                <p class="big-text">
+                    A luz transforma tudo ao seu redor.
+                </p>
+
+                <p>
+                    Para os impressionistas, as cores mudavam de acordo
+                    com a iluminação, o horário e o clima. Por isso,
+                    eles frequentemente pintavam ao ar livre.
+                </p>
+
+                <div class="facts">
+
+                    <div>
+                        <strong>01</strong>
+                        <span>Luz natural</span>
+                    </div>
+
+                    <div>
+                        <strong>02</strong>
+                        <span>Sombras coloridas</span>
+                    </div>
+
+                    <div>
+                        <strong>03</strong>
+                        <span>Instante</span>
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="features-container">
-                <div class="feature-box">
-                    <i class="fa-solid fa-sun icon"></i>
-                    <h3>Pintura ao Ar Livre</h3>
-                    <p>Uso da técnica <em>en plein air</em>. Os pintores saíam dos ateliês para capturar as transformações da luz natural sobre a paisagem.</p>
-                </div>
-                <div class="feature-box">
-                    <i class="fa-solid fa-wand-magic-sparkles icon"></i>
-                    <h3>Técnica e Pincelada</h3>
-                    <p>Uso de pinceladas curtas e rápidas. Ruptura com o <em>sfumato</em> tradicional e abandono do uso de cor preta pura nas sombras.</p>
-                </div>
-                <div class="feature-box">
-                    <i class="fa-solid fa-eye icon"></i>
-                    <h3>A "Impressão" do Momento</h3>
-                    <p>Em vez de detalhes minuciosos e contornos bem definidos, valorizava-se a percepção visual rápida da luz e da cor.</p>
-                </div>
+            <div class="light-art">
+
+                <div class="glow"></div>
+
+                <div class="tree tree1"></div>
+                <div class="tree tree2"></div>
+                <div class="tree tree3"></div>
+
+                <div class="field"></div>
+
             </div>
+
         </section>
 
-        <!-- Página 4: Galeria Interativa -->
-        <section id="artes" class="page-section">
-            <h2 class="section-title">Galeria de Obras Destacadas</h2>
-            <div class="gallery-grid">
-                
-                <div class="card" data-title="Mulher no Jardim (1866)" data-author="Claude Monet" data-desc="Estudo pioneiro sobre a incidência da luz do sol sobre as roupas, vegetação e sombras num ambiente externo.">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/a4/Claude_Monet_-_Women_in_the_Garden_-_Google_Art_Project.jpg/800px-Claude_Monet_-_Women_in_the_Garden_-_Google_Art_Project.jpg" alt="Mulher no Jardim - Monet">
-                    <div class="card-info">
-                        <h3>Mulher no Jardim</h3>
-                        <p>Claude Monet (1866)</p>
-                        <button class="btn-card" onclick="openModal(this)">Detalhes</button>
-                    </div>
-                </div>
 
-                <div class="card" data-title="Boulevard des Capucines (1874)" data-author="Claude Monet" data-desc="Captura o movimento vibrante de uma grande avenida em Paris, onde os pedestres são retratados com pequenas pinceladas rápidas.">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Claude_Monet_-_Boulevard_des_Capucines_-_Google_Art_Project.jpg/800px-Claude_Monet_-_Boulevard_des_Capucines_-_Google_Art_Project.jpg" alt="Boulevard des Capucines - Monet">
-                    <div class="card-info">
-                        <h3>Boulevard des Capucines</h3>
-                        <p>Claude Monet (1874)</p>
-                        <button class="btn-card" onclick="openModal(this)">Detalhes</button>
-                    </div>
-                </div>
+        <!-- CENA 4 -->
+        <section class="scene" data-index="3">
 
-                <div class="card" data-title="Jeanne Samary em um vestido decotado (1877)" data-author="Pierre-Auguste Renoir" data-desc="Retrato impressionista marcado pelo calor das cores, vivacidade do olhar e delicadeza no tratamento das luzes sobre a pele.">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Pierre-Auguste_Renoir_-_Portrait_of_Jeanne_Samary_-_Google_Art_Project.jpg/800px-Pierre-Auguste_Renoir_-_Portrait_of_Jeanne_Samary_-_Google_Art_Project.jpg" alt="Jeanne Samary - Renoir">
-                    <div class="card-info">
-                        <h3>Jeanne Samary</h3>
-                        <p>Pierre-Auguste Renoir (1877)</p>
-                        <button class="btn-card" onclick="openModal(this)">Detalhes</button>
-                    </div>
-                </div>
+            <div class="scene-content center">
 
-                <div class="card" data-title="The Pont-Neuf (1902)" data-author="Camille Pissarro" data-desc="Exemplo da maturidade impressionista retratando arquitetura, pontes e o rio Sena sob variações atmosféricas e de iluminação.">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Camille_Pissarro_-_The_Pont_Neuf_-_Google_Art_Project.jpg/800px-Camille_Pissarro_-_The_Pont_Neuf_-_Google_Art_Project.jpg" alt="The Pont-Neuf - Pissarro">
-                    <div class="card-info">
-                        <h3>The Pont-Neuf</h3>
-                        <p>Camille Pissarro (1902)</p>
-                        <button class="btn-card" onclick="openModal(this)">Detalhes</button>
-                    </div>
+                <div class="eyebrow">03 • CORES</div>
+
+                <h2>
+                    Cores que
+                    <em>dançam</em>
+                </h2>
+
+                <p>
+                    Em vez de misturar todas as cores na paleta,
+                    muitos impressionistas utilizavam pequenas
+                    pinceladas de cores próximas.
+                </p>
+
+            </div>
+
+            <div class="color-explosion">
+
+                <span class="blob b1"></span>
+                <span class="blob b2"></span>
+                <span class="blob b3"></span>
+                <span class="blob b4"></span>
+                <span class="blob b5"></span>
+                <span class="blob b6"></span>
+                <span class="blob b7"></span>
+                <span class="blob b8"></span>
+                <span class="blob b9"></span>
+                <span class="blob b10"></span>
+
+            </div>
+
+            <div class="color-label">
+                AZUL + AMARELO + VERMELHO
+                <br>
+                <small>percepção • contraste • luminosidade</small>
+            </div>
+
+        </section>
+
+
+        <!-- CENA 5 -->
+        <section class="scene" data-index="4">
+
+            <div class="scene-content">
+
+                <div class="eyebrow">04 • CLAUDE MONET</div>
+
+                <h2>
+                    Claude
+                    <em>Monet</em>
+                </h2>
+
+                <p class="big-text">
+                    O pintor da luz e das impressões.
+                </p>
+
+                <p>
+                    Monet foi um dos principais nomes do Impressionismo.
+                    Suas pinturas exploraram paisagens, jardins, água,
+                    céu e diferentes condições de luz.
+                </p>
+
+                <div class="artist-signature">
+                    Claude Monet
                 </div>
 
             </div>
+
+            <div class="monet-art">
+
+                <div class="water-lily lily1"></div>
+                <div class="water-lily lily2"></div>
+                <div class="water-lily lily3"></div>
+                <div class="water-lily lily4"></div>
+
+                <div class="bridge"></div>
+
+                <div class="reflection"></div>
+
+            </div>
+
         </section>
 
-        <!-- Página 5: Atividade Prática -->
-        <section id="pratica" class="page-section">
-            <h2 class="section-title">Atividade Prática do Aluno</h2>
-            <div class="about-card">
-                <h3><i class="fa-solid fa-paintbrush"></i> Como Fazer o Teu Desenho Impressionista</h3>
-                <p>Siga estes 3 passos para criar uma obra inspirada na Aula 42:</p>
-                <ol class="steps-list">
-                    <li><strong>Escolha do Local:</strong> Observe uma paisagem ao ar livre (um jardim, janela ou praça) ou escolha uma fotografia de paisagem.</li>
-                    <li><strong>Elimine os Contornos:</strong> Não desenhe linhas pretas rígidas para contornar os objetos. Deixe que as cores definam as formas.</li>
-                    <li><strong>Pinceladas/Traços Curtos:</strong> Utilize pequenas marcas de lápis de cor, giz ou tinta lado a lado para representar os reflexos de luz.</li>
-                </ol>
-                <div class="interactive-demo">
-                    <button id="themeToggle" class="btn btn-primary"><i class="fa-solid fa-circle-half-stroke"></i> Alternar Tema Visual</button>
-                </div>
+
+        <!-- CENA 6 -->
+        <section class="scene" data-index="5">
+
+            <div class="scene-content">
+
+                <div class="eyebrow">05 • RENOIR</div>
+
+                <h2>
+                    Pierre-Auguste
+                    <em>Renoir</em>
+                </h2>
+
+                <p>
+                    Renoir ficou conhecido por suas cenas de pessoas,
+                    festas, encontros e momentos cotidianos.
+                </p>
+
+                <p>
+                    Suas pinturas são marcadas por cores luminosas,
+                    pinceladas suaves e uma atmosfera alegre.
+                </p>
+
             </div>
+
+            <div class="renoir-art">
+
+                <div class="light-orb orb1"></div>
+                <div class="light-orb orb2"></div>
+                <div class="light-orb orb3"></div>
+                <div class="light-orb orb4"></div>
+
+                <div class="person person1"></div>
+                <div class="person person2"></div>
+                <div class="person person3"></div>
+
+            </div>
+
         </section>
+
+
+        <!-- CENA 7 -->
+        <section class="scene" data-index="6">
+
+            <div class="scene-content center">
+
+                <div class="eyebrow">06 • DEGAS</div>
+
+                <h2>
+                    Movimento,
+                    <em>dança</em> e instante
+                </h2>
+
+                <p>
+                    Edgar Degas explorou especialmente bailarinas,
+                    ensaios e cenas do cotidiano.
+                </p>
+
+                <p>
+                    Suas composições frequentemente parecem capturar
+                    um momento que está acontecendo diante dos nossos olhos.
+                </p>
+
+            </div>
+
+            <div class="dance-stage">
+
+                <div class="curtain left"></div>
+                <div class="curtain right"></div>
+
+                <div class="dancer">
+
+                    <div class="head"></div>
+                    <div class="body"></div>
+                    <div class="leg leg1"></div>
+                    <div class="leg leg2"></div>
+                    <div class="arm arm1"></div>
+                    <div class="arm arm2"></div>
+
+                </div>
+
+                <div class="stage-floor"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CENA 8 -->
+        <section class="scene" data-index="7">
+
+            <div class="scene-content center">
+
+                <div class="eyebrow">07 • PARIS</div>
+
+                <h2>
+                    Uma cidade em
+                    <em>transformação</em>
+                </h2>
+
+                <p>
+                    Paris tornou-se um dos grandes cenários do
+                    Impressionismo.
+                </p>
+
+                <p>
+                    Cafés, teatros, jardins, ruas e estações passaram
+                    a fazer parte da arte.
+                </p>
+
+            </div>
+
+            <div class="paris">
+
+                <div class="moon"></div>
+
+                <div class="building bld1"></div>
+                <div class="building bld2"></div>
+                <div class="building bld3"></div>
+                <div class="building bld4"></div>
+
+                <div class="eiffel">
+
+                    <div class="tower"></div>
+                    <div class="tower-light"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CENA 9 -->
+        <section class="scene" data-index="8">
+
+            <div class="scene-content">
+
+                <div class="eyebrow">08 • LEGADO</div>
+
+                <h2>
+                    Uma revolução que
+                    <em>continua</em>
+                </h2>
+
+                <p class="big-text">
+                    O Impressionismo mudou a história da arte.
+                </p>
+
+                <p>
+                    A liberdade de pincelada, a observação da luz,
+                    a pintura ao ar livre e o interesse pelo cotidiano
+                    influenciaram inúmeros movimentos posteriores.
+                </p>
+
+            </div>
+
+            <div class="legacy">
+
+                <div class="ring ring1">LUZ</div>
+                <div class="ring ring2">COR</div>
+                <div class="ring ring3">VIDA</div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CENA 10 -->
+        <section class="scene" data-index="9">
+
+            <div class="final-art">
+
+                <div class="final-sun"></div>
+
+                <div class="final-hills"></div>
+
+                <div class="final-water"></div>
+
+                <div class="final-reflection"></div>
+
+            </div>
+
+            <div class="final-text">
+
+                <div class="eyebrow">
+                    FIM DA EXPOSIÇÃO
+                </div>
+
+                <h2>
+                    O instante
+                    <br>
+                    <em>se tornou eterno.</em>
+                </h2>
+
+                <p>
+                    IMPRESSIONISMO
+                </p>
+
+                <div class="paint-line"></div>
+
+                <button class="restart-btn">
+                    ↻ Rever exposição
+                </button>
+
+            </div>
+
+        </section>
+
     </main>
 
-    <!-- Modal (Janela Pop-up para detalhes das obras) -->
-    <div id="artModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <img id="modalImg" src="" alt="Obra de Arte">
-            <h2 id="modalTitle"></h2>
-            <h4 id="modalAuthor"></h4>
-            <p id="modalDesc"></p>
+
+    <!-- NAVEGAÇÃO -->
+
+    <button id="prev" class="nav prev">
+        ←
+    </button>
+
+    <button id="next" class="nav next">
+        →
+    </button>
+
+
+    <div class="bottom-info">
+
+        <div class="progress">
+            <div id="progressBar"></div>
         </div>
+
+        <span>
+            USE ← → PARA NAVEGAR
+        </span>
+
     </div>
 
-    <footer>
-        <p>&copy; 2026 - Trabalho Escolar de Artes | 1ª Série do Ensino Médio</p>
-    </footer>
 
     <script src="script.js"></script>
+
 </body>
-</html>
+                                      </html>
